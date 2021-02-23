@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+    android:title="Clear"
+    android:id="@+id/clear"
+    app:showAsAction="ifRoom"
+    />
+    <item
+        android:title="Change Background"
+        android:id="@+id/changeBackground">
+        <menu>
+            <item
+                android:id="@+id/backgroundRed"
+                android:title="red"
+            />
+
+            <item
+                android:id="@+id/backgroundGreen"
+                android:title="Green"
+                />
+
+        </menu>
+</item>
+    <item
+        android:title="Hide Toppings"
+        android:id="@+id/hide_topping"
+        />
+    <item
+        android:title="Show Toppings"
+        android:id="@+id/show_topping"
+        />
+</menu>
