@@ -3,6 +3,8 @@ package com.example.coffeeshop;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.Menu;
@@ -20,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     Button button_add, button_minus, button_order;
     TextView textView1;
     TextView priceText;
-    EditText name,quantity;
+    EditText userName,quantity;
     String username,addText,c,result;
     int addition;
     int coffeePrice=15;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        name=findViewById(R.id.name);
+        userName=findViewById(R.id.name);
         quantity=findViewById(R.id.quantity);
         button_add=findViewById(R.id.button1);
         textView1=findViewById(R.id.textViewadd);
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         bill(toppings);
+        sendOrder();
         order();
 
     }
@@ -151,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.clear:
                 textView1.setText("1");
-                name.setText("");
+                userName.setText("");
                 cream.setSelected(false);
                 choco.setSelected(false);
                 return true;
@@ -172,6 +175,22 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+    public void sendOrder(){
+        String sendToast=userName.getText().toString() + "You have Ordered" + String.valueOf(addition)+" Coffee Plus " + toppings +", Your Total Bill is: "+ String.valueOf(totalPrice);
+        Toast.makeText(getApplicationContext(),sendToast,Toast.LENGTH_LONG).show();
+    }
+    public void openEmail(){
+        String[] cars = {"1155jeff@gmail.com"};
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setData(Uri.parse("mailto:"));
+        intent.setType("*/*");
+        intent.putExtra(Intent.EXTRA_EMAIL,cars);
+        intent.putExtra(Intent.EXTRA_SUBJECT,"Coffee Order");
+        intent.putExtra(Intent.EXTRA_TEXT,);
+        if (intent.resolveActivity(getPackageManager())!= null){
+            startActivity(intent);
         }
     }
 }
